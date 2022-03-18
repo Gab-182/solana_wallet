@@ -6,46 +6,36 @@ import { useGlobalState } from "../context";
 import { LoadingOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
-// Import Bip39 to convert a phrase to a seed:
-
-// Import the Keypair class from Solana's web3.js library:
-
+import * as Bip39 from "bip39";
+import { Keypair } from "@solana/web3.js";
+/**************************************************************************************/
 const Recover: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [form] = Form.useForm();
   const router = useRouter();
 
   const { account, setAccount, setMnemonic } = useGlobalState();
+  /*..................................................................*/
+  /* *Step 6*: implement a function that recovers an account based on a mnemonic phrase */
 
-  // *Step 6*: implement a function that recovers an account based on a mnemonic phrase
   const handleImport = async (values: any) => {
-    console.log("Recovery functionality not implemented yet!");
-
     setLoading(true);
     const inputMnemonic = values.phrase.trim().toLowerCase();
     setMnemonic(inputMnemonic);
 
-    // (a) review the import guidance on lines 9 and 11
-    // (b) convert the mnemonic to seed bytes
-    // Documentation Reference: https://github.com/bitcoinjs/bip39
-    const seed = new Uint8Array();
-
-    // (c) use the seed to import the account (i.e. keypair)
-    // Documentation Reference:
-    //   https://solana-labs.github.io/solana-web3.js/classes/Keypair.html
-    //   https://solana-labs.github.io/solana-web3.js/classes/Keypair.html#fromSeed
-    const importedAccount = null;
+    /* convert the mnemonic to seed bytes*/
+    const seed = (await Bip39.mnemonicToSeed(inputMnemonic)).slice(0,32);
+    /* use the seed to import the account (i.e. keypair) */
+    const importedAccount = Keypair.fromSeed(seed);
     setAccount(importedAccount);
-
-    // (d) You can now delete the console.log statement since the function is implemented!
   };
-
+  /*..................................................................*/
   useEffect(() => {
     if (account) {
       router.push("/wallet");
     }
   }, [account, router]);
-
+/**************************************************************************************/
   return (
     <>
       <h1 className={"title"}>Import Wallet</h1>
@@ -109,11 +99,11 @@ const Recover: NextPage = () => {
     </>
   );
 };
-
+/**************************************************************************************/
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-
+/**************************************************************************************/
 export default Recover;
