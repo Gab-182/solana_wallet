@@ -71,7 +71,7 @@ const Layout = ({ children }: { children: JSX.Element }): ReactElement => {
       <main className={styles.main}>
         <header className={styles.header}>
           <Link href={`/`} passHref>
-            <div className={`${styles.top} ${styles.logo}`}>MyWallet</div>
+            <div className={`${styles.top} ${styles.logo}`}>Gab_Wallet</div>
           </Link>
 
           <Menu
@@ -119,9 +119,9 @@ const Layout = ({ children }: { children: JSX.Element }): ReactElement => {
 
         <footer className={styles.footerHome}>
           <p>
-            MyWallet tutorial created by{" "}
-            <a className={styles.footerLink} href="https://learn.figment.io/">
-              Figment Learn
+            solana wallet created by{" "}
+            <a className={styles.footerLink} href="https://github.com/Gab-182">
+              Gab-182
             </a>
           </p>
         </footer>
