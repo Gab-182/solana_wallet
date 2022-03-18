@@ -1,7 +1,7 @@
 # Solana_Wallet
 This project is about developing a wallet for the [Solana](https://solana.com/) protocol. 
 
-![](https://user-images.githubusercontent.com/83855149/159090724-0251a1d5-1d77-44d9-88f2-82e30ba3239c.png)![solana_wallet]
+![](https://user-images.githubusercontent.com/83855149/159091269-537a8190-1265-4aec-9361-65a8e3f6bd92.png)
 
 
 ## 🤔 What is the `solana-wallet-dapp`?
